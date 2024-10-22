@@ -1,7 +1,8 @@
 import fs from 'fs';
 import path from 'path';
+import { NextApiRequest, NextApiResponse } from 'next';
 
-export default function addActivity(req, res) {
+export default function addActivity(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
     const activity = req.body;
 

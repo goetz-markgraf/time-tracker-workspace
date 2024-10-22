@@ -2,16 +2,24 @@
 
 import React, { useState } from 'react';
 
+interface Errors {
+  date?: string;
+  timeStart?: string;
+  timeEnd?: string;
+  customerName?: string;
+  description?: string;
+}
+
 const AddActivityForm = () => {
   const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
   const [timeStart, setTimeStart] = useState(new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }));
   const [timeEnd, setTimeEnd] = useState('');
   const [customerName, setCustomerName] = useState('');
   const [description, setDescription] = useState('');
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<Errors>({});
 
   const validate = () => {
-    const newErrors = {};
+    const newErrors: Errors = {};
     const currentDate = new Date();
     const selectedDate = new Date(date);
     const selectedTimeStart = new Date(`${date}T${timeStart}`);
@@ -41,11 +49,11 @@ const AddActivityForm = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!validate()) return;
 
-    const activity = { date, timeStart, timeEnd, customerName, description };
+    const activity: Activity = { date, timeStart, timeEnd, customerName, description };
     const response = await fetch('/api/addActivity', {
       method: 'POST',
       headers: {

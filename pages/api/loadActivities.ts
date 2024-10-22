@@ -1,7 +1,8 @@
 import fs from 'fs';
 import path from 'path';
+import { NextApiRequest, NextApiResponse } from 'next';
 
-export default function loadActivities(req, res) {
+export default function loadActivities(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
     const filePath = path.join(process.cwd(), 'activities.json');
     const fileContents = fs.existsSync(filePath) ? fs.readFileSync(filePath, 'utf8') : "";

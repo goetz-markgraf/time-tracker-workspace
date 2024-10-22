@@ -4,13 +4,13 @@ import React, { useState, useEffect } from 'react';
 
 const ActivityList = () => {
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
-  const [activities, setActivities] = useState([]);
+  const [activities, setActivities] = useState<Activity[]>([]);
 
   useEffect(() => {
     const fetchActivities = async () => {
       const response = await fetch('/api/loadActivities');
       const data = await response.json();
-      const filteredActivities = data.filter(activity => activity.date === selectedDate);
+      const filteredActivities = data.filter((activity: Activity) => activity.date === selectedDate);
       setActivities(filteredActivities);
     };
 
