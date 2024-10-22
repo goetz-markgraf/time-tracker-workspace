@@ -62,33 +62,33 @@ const AddActivityForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-4">
       <div>
-        <label>Date:</label>
-        <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
-        {errors.date && <span>{errors.date}</span>}
+        <label className="block mb-1">Date:</label>
+        <input type="date" value={date} onChange={(e) => setDate(e.target.value)} className="border p-2 w-full focus:ring" />
+        {errors.date && <span className="text-red-500">{errors.date}</span>}
       </div>
       <div>
-        <label>Time Start:</label>
-        <input type="time" value={timeStart} onChange={(e) => setTimeStart(e.target.value)} />
-        {errors.timeStart && <span>{errors.timeStart}</span>}
+        <label className="block mb-1">Time Start:</label>
+        <input type="time" value={timeStart} onChange={(e) => setTimeStart(e.target.value)} className="border p-2 w-full focus:ring" />
+        {errors.timeStart && <span className="text-red-500">{errors.timeStart}</span>}
       </div>
       <div>
-        <label>Time End (optional):</label>
-        <input type="time" value={timeEnd} onChange={(e) => setTimeEnd(e.target.value)} />
-        {errors.timeEnd && <span>{errors.timeEnd}</span>}
+        <label className="block mb-1">Time End (optional):</label>
+        <input type="time" value={timeEnd} onChange={(e) => setTimeEnd(e.target.value)} className="border p-2 w-full focus:ring" />
+        {errors.timeEnd && <span className="text-red-500">{errors.timeEnd}</span>}
       </div>
       <div>
-        <label>Customer Name:</label>
-        <input type="text" value={customerName} onChange={(e) => setCustomerName(e.target.value)} />
-        {errors.customerName && <span>{errors.customerName}</span>}
+        <label className="block mb-1">Customer Name:</label>
+        <input type="text" value={customerName} onChange={(e) => setCustomerName(e.target.value)} className="border p-2 w-full focus:ring" />
+        {errors.customerName && <span className="text-red-500">{errors.customerName}</span>}
       </div>
       <div>
-        <label>Description (optional):</label>
-        <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
-        {errors.description && <span>{errors.description}</span>}
+        <label className="block mb-1">Description (optional):</label>
+        <textarea value={description} onChange={(e) => setDescription(e.target.value)} className="border p-2 w-full focus:ring" />
+        {errors.description && <span className="text-red-500">{errors.description}</span>}
       </div>
-      <button type="submit">Add</button>
+      <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded mt-4">Add</button>
     </form>
   );
 };
