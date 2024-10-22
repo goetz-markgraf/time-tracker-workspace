@@ -1,4 +1,5 @@
-import Image from "next/image";
+"use client"
+
 import AddActivityForm from "../components/AddActivityForm";
 import ActivityList from "../components/ActivityList";
 import { useState } from "react";
