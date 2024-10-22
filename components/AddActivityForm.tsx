@@ -1,6 +1,6 @@
+"use client";
+
 import React, { useState } from 'react';
-import fs from 'fs';
-import path from 'path';
 
 const AddActivityForm = () => {
   const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
@@ -41,16 +41,24 @@ const AddActivityForm = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
 
     const activity = { date, timeStart, timeEnd, customerName, description };
-    const filePath = path.join(process.cwd(), 'activities.json');
-    const activities = JSON.parse(fs.readFileSync(filePath, 'utf8') || '[]');
-    activities.push(activity);
-    fs.writeFileSync(filePath, JSON.stringify(activities, null, 2));
-    alert('Activity added successfully!');
+    const response = await fetch('/api/addActivity', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(activity),
+    });
+
+    if (response.ok) {
+      alert('Activity added successfully!');
+    } else {
+      alert('Failed to add activity.');
+    }
   };
 
   return (
