@@ -5,9 +5,9 @@ export default function handler(req, res) {
   if (req.method === 'POST') {
     const activity = req.body;
 
-    const filePath = path.join(process.cwd(), 'activities.json');
-    const fileContents = fs.readFileSync(filePath, 'utf8');
-    const activities = JSON.parse(fileContents);
+    const filePath = path.join(process.cwd(), 'activities.json');    
+    const fileContents = fs.existsSync(filePath) ? fs.readFileSync(filePath, 'utf8') : "";
+    const activities = fileContents === "" ? [] : JSON.parse(fileContents);
 
     activities.push(activity);
 
