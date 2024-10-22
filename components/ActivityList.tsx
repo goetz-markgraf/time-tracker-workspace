@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useEffect } from 'react';
 
 const ActivityList = () => {
@@ -6,7 +8,7 @@ const ActivityList = () => {
 
   useEffect(() => {
     const fetchActivities = async () => {
-      const response = await fetch('/activities.json');
+      const response = await fetch('/api/loadActivities');
       const data = await response.json();
       const filteredActivities = data.filter(activity => activity.date === selectedDate);
       setActivities(filteredActivities);
